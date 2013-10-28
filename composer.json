@@ -1,0 +1,18 @@
+{
+    "name": "atk4/testsuite",
+    "type": "library",
+    "description": "Tester addon for Agile Toolkit",
+    "homepage": "http://github.com/atk4/atk4-tests",
+    "keywords": ["atk4"],
+    "license": "AGPL",
+    "authors": [
+        {   
+            "name": "Romans Malinovskis",
+            "email": "romans@agiletoolkit.org"
+        }   
+    ],  
+    "require": {
+        "atk4/atk4": ">=4.2",
+        "php": ">=5.3"
+    }   
+}
