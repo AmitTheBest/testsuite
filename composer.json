@@ -2,7 +2,7 @@
     "name": "atk4/testsuite",
     "type": "library",
     "description": "Tester addon for Agile Toolkit",
-    "homepage": "http://github.com/atk4/atk4-tests",
+    "homepage": "http://github.com/atk4/testsuite",
     "keywords": ["atk4"],
     "license": "AGPL",
     "authors": [
