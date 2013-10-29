@@ -11,6 +11,9 @@
             "email": "romans@agiletoolkit.org"
         }   
     ],  
+    "autoload": {
+        "psr-0": { "testsuite": "lib" }
+    },
     "require": {
         "atk4/atk4": ">=4.2",
         "php": ">=5.3"

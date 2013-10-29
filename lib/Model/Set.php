@@ -15,6 +15,9 @@ class Model_Set extends Model {
     function init(){
         parent::init();
 
+        if(!$this->dir)
+            throw $this->exception('Initialize this model through testsuite/Model_Collection');
+
         $this->addField('name');
         $this->addField('total');
         $this->addField('success');
@@ -24,22 +27,14 @@ class Model_Set extends Model {
         $this->addField('memory');
         $this->addField('result');
 
-        /**
-         * This model automatically sets its source by traversing 
-         * and searching for suitable files
-         */
-        $p=$this->api->pathfinder->searchDir($this->dir);
-        sort($p);
-        $this->setSource('ArrayAssoc',$p);
-        $this->addHook('afterLoad',$this);
-
-        return $this;
+        $this->setSource('Folder',$this->dir);
+        $this->joinSource('Mongo','testsuite_set');
     }
     function skipped(){
         $this['result']='Skipped';
         return $this;
     }
-    function afterLoad(){
+    function runTest(){
         // Extend this method and return skipped() for the tests which
         // you do not want to run
         if (false) {
@@ -80,5 +75,9 @@ class Model_Set extends Model {
             $this['result']='Exception: '.($e instanceof BaseException?$e->getText():$e->getMessage());
             return;
         }
+    }
+
+    function runTests() {
+        $this->each('runTest');
     }
 }
