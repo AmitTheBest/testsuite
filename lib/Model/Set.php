@@ -9,7 +9,7 @@
  * Multiple Sets present in a single Collection
  */
 namespace testsuite;
-class Model_Set extends Model {
+class Model_Set extends \Model {
     public $dir=null;
 
     function init(){

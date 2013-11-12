@@ -1,13 +1,13 @@
 <?php
 /**
- * This model reresents a collection of test-sets. Collection 
+ * This model represents a collection of test-sets. Collection 
  * is usually contributed by a single developer. Typically add-on would
  * come with a single collection of test-sets. As you iterate through this
  * model, it will automatically locate all the test-collections of all
  * the installed add-ons as well as your application.
  */
 namespace testsuite;
-class Model_Collection extends Model {
+class Model_Collection extends \Model {
 
     protected $resource_type='test';
     protected $set_model='testsuite/Model_Set';
@@ -39,7 +39,7 @@ class Model_Collection extends Model {
 
         $this->setSource('PathFinder',$this->resource_type);
 
-        $this->addCache('Mongo','testsuite_collection');
+        //$this->addCache('Mongo','testsuite_collection');
     }
 
     function getTest() {
