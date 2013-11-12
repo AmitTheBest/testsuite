@@ -7,7 +7,7 @@
  * the installed add-ons as well as your application.
  */
 namespace testsuite;
-class Model_Collection extends Model {
+class Model_Collection extends \Model {
 
     protected $resource_type='test';
     protected $set_model='testsuite/Model_Set';
@@ -37,9 +37,28 @@ class Model_Collection extends Model {
         // Remaining data must be loaded from the secondary table,
         // but it can also be stored there
 
-        $this->setSource('PathFinder',$this->resource_type);
+        $dirs = $this->api->pathfinder->search('test','','path');
+        $colls=array();
+        foreach($dirs as $dir){
 
-        $this->addCache('Mongo','testsuite_collection');
+            $d=dir($dir);
+            while(false !== ($file=$d->read())){
+                if($file[0]=='.')continue;
+                if(is_dir($dir.'/'.$file)){
+                    $colls[]=array(
+                        'folder'=>$dir.'/'.$file,
+                        'lib'=>$dir.'/'.$file.'/lib',
+                        'name'=>$file,
+                        'id'=>$file,
+                    );
+                }
+            }
+        }
+
+
+        $this->setSource('Array',$colls);
+
+        //$this->addCache('Mongo','testsuite_collection');
     }
 
     function getTest() {
